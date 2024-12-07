@@ -22,7 +22,6 @@ function App() {
       <AboutSection />
       <GallerySection />
       <ReviewsSection />
-      <RestaurantSection />
       <MapSection />
       <ContactSection />
     </div>
@@ -79,9 +78,6 @@ function Header() {
             </a>
           </li>
         </ul>
-        <button className="book-now-btn" onClick={scrollToContact}>
-          Book Now
-        </button>
       </div>
     </header>
   );
