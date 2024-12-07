@@ -3,6 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
 import { analytics } from "./firebase-config.js";
 import { logEvent } from "firebase/analytics";
+import ReviewsSection from "./components/ReviewsSection.jsx";
+import { FaWhatsapp, FaFacebookMessenger, FaFacebook } from "react-icons/fa";
 
 function App() {
   useEffect(() => {
@@ -62,16 +64,13 @@ function Header() {
               Gallery
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#restaurant">
-              Restaurant
-            </a>
-          </li>
+
           <li className="nav-item">
             <a className="nav-link" href="#reviews">
               Reviews
             </a>
           </li>
+
           <li className="nav-item">
             <a className="nav-link" href="#contact">
               Contact
@@ -101,14 +100,22 @@ function HomeSection() {
 }
 
 function AboutSection() {
+  logEvent(analytics, "section_scroll", {
+    section_name: "About",
+  });
   return (
     <section id="about" className="about-section py-5 text-center">
       <div className="container">
         <h2>About the Business</h2>
         <p>
-          Misha Tours offers immersive and personalized tour experiences across
-          Sri Lanka, guided by local experts who share the country's beauty,
-          culture, and hidden gems.
+          Misha Tours offers immersive and personalized travel experiences
+          across the breathtaking landscapes of Sri Lanka. Guided by local
+          experts, our tours showcase the island's rich culture, vibrant
+          heritage, and hidden gems, ensuring every traveler uncovers the true
+          beauty of this tropical paradise. Whether you're exploring ancient
+          temples, relaxing on golden beaches, or trekking through lush tea
+          plantations, we craft every journey to be unique, memorable, and
+          deeply connected to Sri Lanka’s essence.
         </p>
       </div>
     </section>
@@ -116,6 +123,9 @@ function AboutSection() {
 }
 
 function GallerySection() {
+  logEvent(analytics, "section_scroll", {
+    section_name: "Gallery",
+  });
   const galleryImages = [
     "https://github.com/user-attachments/assets/f417a043-4dd9-4841-ae6d-cd0f2d0e6bfb",
     "https://github.com/user-attachments/assets/b3a578da-a484-46d8-aadd-503b8d7ed6f0",
@@ -147,97 +157,17 @@ function GallerySection() {
   );
 }
 
-function ReviewsSection() {
-  const reviews = [
-    "Amazing experience with Misha Tours! - Sarah, UK",
-    "A wonderful and unforgettable journey! - John, USA",
-    "Misha Tours showed us the best of Sri Lanka. - Aiko, Japan",
-  ];
-
-  return (
-    <section id="reviews" className="reviews-section py-5 bg-light text-center">
-      <div className="container">
-        <h2>Client Reviews</h2>
-        <div
-          id="reviewsCarousel"
-          className="carousel slide"
-          data-ride="carousel"
-        >
-          <div className="carousel-inner">
-            {reviews.map((review, index) => (
-              <div
-                className={`carousel-item ${index === 0 ? "active" : ""}`}
-                key={index}
-              >
-                <p>{review}</p>
-              </div>
-            ))}
-          </div>
-          <a
-            className="carousel-control-prev"
-            href="#reviewsCarousel"
-            role="button"
-            data-slide="prev"
-          >
-            <span
-              className="carousel-control-prev-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="sr-only">Previous</span>
-          </a>
-          <a
-            className="carousel-control-next"
-            href="#reviewsCarousel"
-            role="button"
-            data-slide="next"
-          >
-            <span
-              className="carousel-control-next-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="sr-only">Next</span>
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function RestaurantSection() {
-  const restaurants = [
-    { name: "Restaurant 1", description: "Authentic Sri Lankan cuisine." },
-    { name: "Restaurant 2", description: "Fresh seafood by the beach." },
-    { name: "Restaurant 3", description: "Fusion dishes with a modern twist." },
-  ];
-
-  return (
-    <section id="restaurant" className="restaurant-section py-5 text-center">
-      <div className="container">
-        <h2>Our Recommended Restaurants</h2>
-        <p>
-          Explore the finest dining spots curated for your Sri Lankan journey.
-        </p>
-        <div className="row">
-          {restaurants.map((restaurant, index) => (
-            <div className="col-md-4 mb-4" key={index}>
-              <h5>{restaurant.name}</h5>
-              <p>{restaurant.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function MapSection() {
+  logEvent(analytics, "section_scroll", {
+    section_name: "Map",
+  });
   return (
     <section className="map-section">
       <div className="container">
         <h2 className="text-center my-4">Our Location</h2>
         <div className="map-container">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18..."
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247.70353880791373!2d79.94705631931319!3d6.615005839503517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae237a355aeb8e5%3A0xc2eeac3dfec2365b!2sRestaurant%20Weranda!5e0!3m2!1sen!2slk!4v1733583693015!5m2!1sen!2slk"
             width="100%"
             height="400"
             style={{ border: 0 }}
@@ -251,6 +181,9 @@ function MapSection() {
 }
 
 function ContactSection() {
+  logEvent(analytics, "section_scroll", {
+    section_name: "Contact",
+  });
   return (
     <section id="contact" className="contact-section py-5 text-center">
       <div className="container">
@@ -267,28 +200,28 @@ function ContactSection() {
         </div>
         <div className="contact-icons d-flex justify-content-center mb-4">
           <a
-            href="https://web.facebook.com/@geethanga.silva.3"
-            className="contact-icon"
+            href="https://www.facebook.com/share/14evuptpF6/?mibextid=LQQJ4d"
             target="_blank"
             rel="noopener noreferrer"
+            style={{ fontSize: "30px", margin: "0 10px", color: "#0078ff" }}
           >
-            <i className="fab fa-facebook-f"></i>
+            <FaFacebook />
           </a>
           <a
-            href="https://web.facebook.com/@geethanga.silva.3"
-            className="contact-icon"
+            href="https://m.me/geethanga.silva.3"
             target="_blank"
             rel="noopener noreferrer"
+            style={{ fontSize: "30px", margin: "0 10px", color: "#0078ff" }}
           >
-            <i className="fab fa-facebook-messenger"></i>
+            <FaFacebookMessenger />
           </a>
           <a
             href="https://wa.me/+94713423976"
-            className="contact-icon"
             target="_blank"
             rel="noopener noreferrer"
+            style={{ fontSize: "30px", margin: "0 10px", color: "#25D366" }}
           >
-            <i className="fab fa-whatsapp"></i>
+            <FaWhatsapp />
           </a>
         </div>
       </div>
