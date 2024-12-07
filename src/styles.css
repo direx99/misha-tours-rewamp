@@ -294,9 +294,18 @@ body {
   gap: 16px;
 }
 
+/* Default: 3 reviews per row on larger screens */
 .reviews-list .col-md-4 {
   flex: 1 1 calc(33.333% - 16px);
   max-width: calc(33.333% - 16px);
+}
+
+/* On mobile devices (small screens), show only 1 review per row */
+@media (max-width: 767px) {
+  .reviews-list .col-md-4 {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
 }
 
 .review-item {
